@@ -1,4 +1,5 @@
 import { Application, Context } from "probot";
+import getConfig from "probot-config";
 
 interface IComplexityLevel {
 	threshold: number[];
@@ -38,7 +39,7 @@ const assignLabel = async (context: Context, levels: IComplexityLevel[], name: s
 };
 
 const assignComplexity = async (context: Context) => {
-	const { complexity } = await context.config("botamic.yml", {
+	const { complexity } = await getConfig(context, "botamic.yml", {
 		complexity: {
 			low: { threshold: [1, 64], label: "Complexity: Low" },
 			medium: {
