@@ -1,6 +1,6 @@
 # complexity
 
-> A GitHub App built with [Probot](https://github.com/probot/probot) that assigns complexity levels.
+> A GitHub App built with [Probot](https://github.com/probot/probot) that assigns rule-based complexity levels.
 
 ## Setup
 

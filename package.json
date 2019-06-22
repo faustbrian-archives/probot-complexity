@@ -1,7 +1,7 @@
 {
 	"name": "@botamic/complexity",
 	"version": "1.0.0",
-	"description": "A GitHub App built with Probot that assigns complexity levels.",
+	"description": "A GitHub App built with Probot that assigns rule-based complexity levels.",
 	"keywords": [
 		"github",
 		"probot",
