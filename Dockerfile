@@ -1,6 +1,6 @@
 FROM node:alpine
 
-LABEL "com.github.actions.name"="complexity"
+LABEL "com.github.actions.name"="botamic-complexity"
 LABEL "com.github.actions.description"="A GitHub App built with Probot that assigns rule-based complexity levels."
 LABEL "com.github.actions.icon"="code"
 LABEL "com.github.actions.color"="gray-dark"
