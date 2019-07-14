@@ -1,5 +1,5 @@
 import { Application, Context } from "probot";
-import getConfig from "probot-config";
+import { loadConfig } from "./services/config";
 
 interface IComplexityLevel {
 	threshold: number[];
@@ -39,24 +39,7 @@ const assignLabel = async (context: Context, levels: IComplexityLevel[], name: s
 };
 
 const assignComplexity = async (context: Context) => {
-	const { complexity } = await getConfig(context, "botamic.yml", {
-		complexity: {
-			low: { threshold: [1, 64], label: "Complexity: Low" },
-			medium: {
-				threshold: [64, 256],
-				label: "Complexity: Medium",
-			},
-			high: {
-				threshold: [256, 1024],
-				label: "Complexity: High",
-			},
-			undetermined: {
-				threshold: [1024],
-				label: "Complexity: Undetermined",
-			},
-		},
-	});
-
+	const complexity = await loadConfig(context);
 	const totalComplexity: number = context.payload.pull_request.additions + context.payload.pull_request.deletions;
 
 	for (const level of Object.values(complexity) as IComplexityLevel[]) {
@@ -73,6 +56,5 @@ const assignComplexity = async (context: Context) => {
 };
 
 export = (robot: Application) => {
-	robot.on("pull_request.opened", assignComplexity);
-	robot.on("pull_request.synchronize", assignComplexity);
+	robot.on(["pull_request.opened", "pull_request.synchronize"], assignComplexity);
 };
